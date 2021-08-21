@@ -121,6 +121,7 @@ jobs:
         run: |
           cp .env.example .env
           touch ./storage/data.db
+          ./artisan key:generate
           ./artisan migrate:fresh --seed
       - name: Run PHPSpec
         if: true != matrix.coverage
