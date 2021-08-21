@@ -123,6 +123,7 @@ jobs:
           touch ./storage/data.db
           ./artisan key:generate
           ./artisan config:cache
+          ./artisan passport:keys
           ./artisan migrate:fresh --seed
       - name: Run PHPSpec
         if: true != matrix.coverage
