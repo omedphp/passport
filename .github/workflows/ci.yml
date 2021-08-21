@@ -95,6 +95,9 @@ jobs:
         include:
           - php: '8.0'
             coverage: true
+    env:
+      DB_CONNECTION: sqlite
+      DB_DATABASE: ./storage/data.db
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -113,9 +116,12 @@ jobs:
         if: matrix.coverage
         run: echo "COVERAGE=1" >> $GITHUB_ENV
       - name: Install dependencies
-        run: composer install --prefer-dist --no-interaction --no-progress
-      - name: Configure Database
-        run: ./artisan migrate:fresh --seed
+        run: composer update --prefer-dist --no-interaction --no-progress
+      - name: Configure Application
+        run: |
+          cp .env.example .env
+          touch ./storage/data.db
+          ./artisan migrate:fresh --seed
       - name: Run PHPSpec
         if: true != matrix.coverage
         run: ./vendor/bin/phpspec run
