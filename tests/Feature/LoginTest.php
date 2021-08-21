@@ -20,6 +20,12 @@ class LoginTest extends TestCase
 {
     use InteractsWithPassportClient;
 
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->withoutExceptionHandling();
+    }
+
     public function test_it_should_handle_login(): void
     {
         $passwordClient = $this->getPasswordGrantClient();
@@ -32,6 +38,8 @@ class LoginTest extends TestCase
             'password' => 'admin',
             'scope' => '',
         ]);
+
+        $response->assertOk();
         $response->assertStatus(200);
     }
 }
