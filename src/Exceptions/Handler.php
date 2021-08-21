@@ -39,11 +39,11 @@ class Handler extends ExceptionHandler
      * Register the exception handling callbacks for the application.
      *
      * @return void
+     * @psalm-suppress UnusedClosureParam
      */
     public function register()
     {
         $this->reportable(function (\Throwable $e) {
-            //
         });
     }
 }
