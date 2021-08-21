@@ -32,6 +32,8 @@ class LoginTest extends TestCase
             'password' => 'admin',
             'scope' => '',
         ]);
+
+        $response->assertOk();
         $response->assertStatus(200);
     }
 }
