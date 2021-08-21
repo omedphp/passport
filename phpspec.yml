@@ -1,0 +1,12 @@
+suites:
+  omed_component:
+    namespace: Omed\Passport
+    psr4_prefix: Omed\Passport
+extensions:
+  FriendsOfPhpSpec\PhpSpec\CodeCoverage\CodeCoverageExtension:
+    format:
+      - php
+    output:
+      php: build/cov/phpspec.cov
+    whitelist:
+      - src

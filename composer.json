@@ -1,0 +1,90 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": ["framework", "laravel"],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/",
+            "Omed\\Passport\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/",
+            "spec\\Omed\\Passport\\": "spec"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "cov-spec": "@php ./vendor/bin/phpspec run",
+        "cov-phpunit": "@php ./vendor/bin/phpunit --coverage-php ./build/cov/phpunit.cov",
+        "coverage-clover": [
+            "@cov-spec",
+            "@cov-phpunit",
+            "./vendor/bin/phpcov merge --clover build/logs/clover.xml ./build/cov"
+        ],
+        "coverage-html": [
+            "@cov-spec",
+            "@cov-phpunit",
+            "./vendor/bin/phpcov merge --html build/html ./build/cov"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4",
+        "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.0",
+        "laravel/passport": "^10.1",
+        "laravel/tinker": "^2.5"
+    },
+    "require-dev": {
+        "facade/ignition": "^2.5",
+        "fakerphp/faker": "^1.9.1",
+        "friends-of-phpspec/phpspec-code-coverage": "^6.1",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.0",
+        "nunomaduro/larastan": "^0.7.12",
+        "phpspec/phpspec": "^7.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan": "^0.12.96",
+        "phpstan/phpstan-doctrine": "^0.12.43",
+        "phpstan/phpstan-mockery": "^0.12.14",
+        "phpstan/phpstan-phpunit": "^0.12.22",
+        "phpunit/phpcov": "^8.2",
+        "phpunit/phpunit": "^9.3.3",
+        "psalm/plugin-laravel": "^1.5",
+        "psalm/plugin-mockery": "^0.9.0",
+        "psalm/plugin-phpunit": "^0.16.1",
+        "vimeo/psalm": "^4.9"
+    }
+}
