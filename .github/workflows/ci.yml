@@ -129,7 +129,7 @@ jobs:
         run: ./vendor/bin/phpspec run
       - name: Run PHPUnit
         if: true != matrix.coverage
-        run: ./vendor/bin/phpunit
+        run: ./artisan test -vvv
       - name: Run Coverage
         if: matrix.coverage
         run: composer coverage-clover
