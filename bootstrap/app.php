@@ -47,6 +47,7 @@ $app->singleton(
     Omed\Passport\Console\Kernel::class
 );
 
+
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     Omed\Passport\Exceptions\Handler::class
