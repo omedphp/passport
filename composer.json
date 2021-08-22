@@ -42,6 +42,9 @@
             "@cov-spec",
             "@cov-phpunit",
             "./vendor/bin/phpcov merge --html build/html ./build/cov"
+        ],
+        "post-install-cmd": [
+            "@php ./artisan migrate -n --force"
         ]
     },
     "extra": {
