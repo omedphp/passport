@@ -136,6 +136,7 @@ jobs:
           ./artisan migrate:fresh --seed
           yarn install
           yarn dev
+          artisan config:clear
       - name: Run PHPSpec
         if: true != matrix.coverage
         run: ./vendor/bin/phpspec run
