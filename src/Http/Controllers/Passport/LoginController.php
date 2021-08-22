@@ -17,13 +17,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Passport\PersonalAccessTokenFactory;
 use Omed\Passport\Http\Controllers\Controller;
 use Omed\Passport\Models\User;
 
 class LoginController extends Controller
 {
-    public function login(Request $request, PersonalAccessTokenFactory $accessTokenFactory)
+    public function login(Request $request): Response
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|string',

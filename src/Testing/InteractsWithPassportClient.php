@@ -18,14 +18,6 @@ use Laravel\Passport\ClientRepository;
 
 trait InteractsWithPassportClient
 {
-    public function createPersonalAccessClient(string $name= 'personal', string $redirect='http://localhost')
-    {
-        $repository = $this->getClientRepository();
-        $client     =  $repository->createPersonalAccessClient(null, $name, $redirect);
-        config('passport.personal_access_client.id', $client->id);
-        config('passport.personal_access_client.secret', $client->secret);
-    }
-
     /**
      * @psalm-suppress NullArgument
      */
