@@ -44,11 +44,13 @@ class LoginController extends Controller
                 $token    = $user->createToken('password');
                 /** @var Carbon $expiresIn */
                 $expiresIn = $token->token->expires_at;
-                $response = [
+                $response  = [
                     'token' => $token->accessToken,
                     'expires' => $expiresIn,
-                    'message' => 'Your token has been created'
+                    'message' => 'Your token has been created',
                 ];
+
+                /** @psalm-suppress PossiblyUndefinedMethod */
                 cookie()->queue(
                     'token',
                     $token->accessToken,
@@ -58,6 +60,7 @@ class LoginController extends Controller
                     true,
                     true
                 );
+
                 return response($response, 200);
             }
         }

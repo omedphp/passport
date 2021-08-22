@@ -7,5 +7,3 @@ parameters:
     excludePaths:
         - src/*/*/Resources
         - tests/sandbox
-    ignoreErrors:
-        - '#method Laravel[a-zA-Z0-9\\_]+::createPasswordGrantClient\(\)#'

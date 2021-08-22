@@ -40,7 +40,7 @@ class LoginTest extends TestCase
 
         $response = $this->post(route('passport.login'), [
             'username' => $user->username,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertStatus(200);

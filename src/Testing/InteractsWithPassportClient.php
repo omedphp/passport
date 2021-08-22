@@ -35,7 +35,7 @@ trait InteractsWithPassportClient
                 'redirect' => $redirect,
                 'personal_access_client' => true,
                 'password_client' => false,
-                'revoked' => false
+                'revoked' => false,
             ]);
         }
 
