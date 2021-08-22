@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace spec\Omed\Passport\Model;
+namespace spec\Omed\Passport\Models;
 
-use Omed\Passport\Model\User;
+use Omed\Passport\Models\User;
 
 class TestUser extends User
 {

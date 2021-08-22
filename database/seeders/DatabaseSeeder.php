@@ -17,7 +17,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
-use Omed\Passport\Model\User;
+use Omed\Passport\Models\User;
 
 class DatabaseSeeder extends Seeder
 {

@@ -76,7 +76,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \Omed\Passport\Model\User::class,
+            'model' => Omed\Passport\Models\User::class,
         ],
 
         // 'users' => [

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Omed\Passport\Model;
+namespace Omed\Passport\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -39,5 +39,10 @@ trait HasUuidTrait
     public function getKeyType(): string
     {
         return 'string';
+    }
+
+    public function getKey(): string
+    {
+        return (string) $this->getAttribute($this->getKeyName());
     }
 }

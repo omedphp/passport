@@ -13,9 +13,13 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use Omed\Passport\Models\User;
 use Omed\Passport\Testing\InteractsWithPassportClient;
 use Tests\TestCase;
 
+/**
+ * @covers \Omed\Passport\Models\User
+ */
 class LoginTest extends TestCase
 {
     use InteractsWithPassportClient;
@@ -29,13 +33,14 @@ class LoginTest extends TestCase
     public function test_it_should_handle_login(): void
     {
         $passwordClient = $this->getPasswordGrantClient();
+        $user           = User::factory()->create();
 
         $response = $this->post('/oauth/token', [
             'grant_type' => 'password',
             'client_id' => $passwordClient->getAttribute('id'),
             'client_secret' => $passwordClient->getAttribute('secret'),
-            'username' => 'admin',
-            'password' => 'admin',
+            'username' => $user->username,
+            'password' => 'password',
             'scope' => '',
         ]);
 

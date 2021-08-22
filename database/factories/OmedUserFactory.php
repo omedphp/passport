@@ -15,7 +15,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Omed\Passport\Model\User;
+use Omed\Passport\Models\User;
 
 class OmedUserFactory extends Factory
 {

@@ -11,7 +11,7 @@
 
 declare(strict_types=1);
 
-namespace Omed\Passport\Model;
+namespace Omed\Passport\Models;
 
 use Database\Factories\OmedUserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -28,6 +28,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
