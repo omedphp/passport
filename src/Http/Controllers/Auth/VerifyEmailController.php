@@ -25,6 +25,7 @@ class VerifyEmailController extends Controller
 {
     /**
      * Mark the authenticated user's email address as verified.
+     *
      * @psalm-suppress PossiblyInvalidArgument
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
