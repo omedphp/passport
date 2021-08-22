@@ -32,3 +32,5 @@ Route::middleware('auth')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'passport'], function () {
     Route::post('/login', [\Omed\Passport\Http\Controllers\Passport\LoginController::class, 'login']);
 });
+
+require __DIR__.'/api/profile.php';
