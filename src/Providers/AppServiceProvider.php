@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
         $config = $this->app['config'];
 
         /** @var string $env */
-        $env           = env('CORS_ALLOWED_ORIGINS', 'http://localhost:3000,http://localhost');
+        $env           = env('CORS_ALLOW_ORIGINS', 'http://localhost:3000,http://localhost');
         $allowedOrigins= explode(',', $env);
         $config->set('cors.allowed_origins', $allowedOrigins);
     }
