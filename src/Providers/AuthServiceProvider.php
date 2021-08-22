@@ -25,7 +25,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'Omed\Passport\Eloquent\Model\Model' => 'App\Policies\ModelPolicy',
+        // 'Omed\Passport\Eloquent\Model\Model' => 'Omed\Passport\Policies\ModelPolicy',
     ];
 
     /**

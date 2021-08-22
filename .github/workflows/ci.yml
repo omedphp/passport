@@ -25,10 +25,17 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: intl, bcmath, curl, openssl, mbstring
           ini-values: memory_limit=-1
-          tools: pecl, composer, php-cs-fixer
+          tools: pecl, composer
           coverage: none
+      - name: Cache Composer cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.composer/cache
+          key: composer-cache-php${{ matrix.php }}
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
       - name: Run PHP-CS-Fixer fix
-        run: php-cs-fixer fix --dry-run --diff --ansi
+        run: ./vendor/bin/php-cs-fixer fix --dry-run --diff --ansi
 
   # phpstan tests
   phpstan:
@@ -115,22 +122,27 @@ jobs:
       - name: Enable code coverage
         if: matrix.coverage
         run: echo "COVERAGE=1" >> $GITHUB_ENV
+      - name: Configure required files
+        run: |
+          touch ./storage/data.db
+          cp .env.example .env
       - name: Install dependencies
         run: composer update --prefer-dist --no-interaction --no-progress
       - name: Configure Application
         run: |
-          cp .env.example .env
-          touch ./storage/data.db
           ./artisan key:generate
           ./artisan config:cache
           ./artisan passport:keys
           ./artisan migrate:fresh --seed
+          yarn install
+          yarn dev
+          ./artisan config:clear
       - name: Run PHPSpec
         if: true != matrix.coverage
         run: ./vendor/bin/phpspec run
       - name: Run PHPUnit
         if: true != matrix.coverage
-        run: ./artisan test -vvv
+        run: ./artisan test
       - name: Run Coverage
         if: matrix.coverage
         run: composer coverage-clover

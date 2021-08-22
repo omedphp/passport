@@ -48,6 +48,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Omed\Passport\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            \Omed\Passport\Http\Middleware\HandleInertiaRequests::class,
         ],
 
         'api' => [

@@ -11,9 +11,10 @@
 
 declare(strict_types=1);
 
-namespace Omed\Passport\Model;
+namespace Omed\Passport\Models;
 
 use Database\Factories\OmedUserFactory;
+use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,9 +26,11 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasUuidTrait;
+    use MustVerifyEmail;
     use Notifiable;
 
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
