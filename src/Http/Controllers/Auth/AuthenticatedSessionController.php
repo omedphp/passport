@@ -13,10 +13,13 @@ declare(strict_types=1);
 
 namespace Omed\Passport\Http\Controllers\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Inertia\Response;
 use Omed\Passport\Http\Controllers\Controller;
 use Omed\Passport\Http\Requests\Auth\LoginRequest;
 use Omed\Passport\Providers\RouteServiceProvider;
@@ -25,10 +28,8 @@ class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
-     *
-     * @return \Inertia\Response
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Auth/Login', [
             'canResetPassword' => Route::has('password.request'),
@@ -39,9 +40,9 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @throws ValidationException
      */
-    public function store(LoginRequest $request)
+    public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
 
@@ -53,9 +54,9 @@ class AuthenticatedSessionController extends Controller
     /**
      * Destroy an authenticated session.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @psalm-suppress PossiblyUndefinedMethod
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
 

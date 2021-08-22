@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Omed\Passport\Http\Controllers\Auth;
 
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,11 +37,9 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @throws \Illuminate\Validation\ValidationException
-     *
-     * @return \Illuminate\Http\RedirectResponse
+     * @psalm-suppress MixedArgument
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'username' => 'required|string|unique:users',

@@ -16,6 +16,7 @@ namespace Omed\Passport\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Omed\Passport\Http\Controllers\Controller;
+use Omed\Passport\Models\User;
 use Omed\Passport\Providers\RouteServiceProvider;
 
 class EmailVerificationPromptController extends Controller
@@ -25,7 +26,10 @@ class EmailVerificationPromptController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return $request->user()->hasVerifiedEmail()
+        /** @var User $user */
+        $user = $request->user();
+
+        return $user->hasVerifiedEmail()
                     ? redirect()->intended(RouteServiceProvider::HOME)
                     : Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
     }
