@@ -21,20 +21,22 @@ trait InteractsWithPassportClient
     /**
      * @psalm-suppress NullArgument
      */
-    public function getPasswordGrantClient(
+    public function ensurePasswordGrantClient(
         string $clientName = 'password',
         string $redirect = 'http://localhost',
         string $provider = 'users'
     ): Client {
-        $repository = $this->getClientRepository();
         $client     = Client::where('name', $clientName)->first();
         if (null === $client) {
-            $client = $repository->createPasswordGrantClient(
-                null,
-                $clientName,
-                $redirect,
-                $provider
-            );
+            $client = Client::factory()->create([
+                'id' => config('passport.personal_access_client.id'),
+                'secret' => config('passport.personal_access_client.secret'),
+                'name' => 'password',
+                'redirect' => $redirect,
+                'personal_access_client' => true,
+                'password_client' => false,
+                'revoked' => false,
+            ]);
         }
 
         return $client;
