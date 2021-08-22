@@ -1,6 +1,6 @@
 APP_NAME=Passport
 APP_ENV=local
-APP_KEY=base64:I9HBBa/Sq0eTfb0Y6hwDMsmoG/k/ciDRNH8WQSxaHBo=
+APP_KEY=base64:rsLnxEQNljZrWerOJdF2qEvS70jzTKgnRmjjoEeoj5Q=
 APP_DEBUG=true
 APP_URL=http://passport.test
 APP_PORT=80
