@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Omed\Passport\Models\User;
 use Omed\Passport\Testing\InteractsWithPassportClient;
 use Tests\TestCase;
@@ -23,12 +24,7 @@ use Tests\TestCase;
 class LoginTest extends TestCase
 {
     use InteractsWithPassportClient;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-        $this->withoutExceptionHandling();
-    }
+    use RefreshDatabase;
 
     public function test_it_should_handle_login(): void
     {
