@@ -29,13 +29,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    //'allowed_origins' => ['*'],
-
-    'allowed_origins' => [
-        'localhost',
-        '*.itstoni.com',
-        'http://localhost:3000',
-    ],
+    'allowed_origins' => [],
 
     'allowed_origins_patterns' => [],
 
