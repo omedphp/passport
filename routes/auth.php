@@ -11,9 +11,6 @@
 
 declare(strict_types=1);
 
-/**
- * @psalm-suppress PossiblyInvalidMethodCall
- */
 use Illuminate\Support\Facades\Route;
 use Omed\Passport\Http\Controllers\Auth\AuthenticatedSessionController;
 use Omed\Passport\Http\Controllers\Auth\ConfirmablePasswordController;
