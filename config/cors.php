@@ -25,11 +25,17 @@ return [
     |
     */
 
-    'paths' => ['api/*'],
+    'paths' => ['api/*', 'oauth/*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    //'allowed_origins' => ['*'],
+
+    'allowed_origins' => [
+        'localhost',
+        '*.itstoni.com',
+        'http://localhost:3000',
+    ],
 
     'allowed_origins_patterns' => [],
 
@@ -39,5 +45,5 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    'supports_credentials' => true,
 ];

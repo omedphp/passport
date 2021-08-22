@@ -19,6 +19,7 @@ services:
             DB_HOST: "pgsql"
         volumes:
             - '.:/var/www/html'
+            - './docker/env.sail:/var/www/html/.env'
         networks:
             - sail
         depends_on:

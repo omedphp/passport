@@ -28,3 +28,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['prefix' => 'passport'], function () {
+    Route::post('/login', [\Omed\Passport\Http\Controllers\Passport\LoginController::class, 'login']);
+});
