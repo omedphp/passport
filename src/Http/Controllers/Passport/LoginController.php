@@ -13,16 +13,18 @@ declare(strict_types=1);
 
 namespace Omed\Passport\Http\Controllers\Passport;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Passport\ClientRepository;
 use Omed\Passport\Http\Controllers\Controller;
 use Omed\Passport\Models\User;
 
 class LoginController extends Controller
 {
-    public function login(Request $request): Response
+    public function login(Request $request, ClientRepository $clientRepository): Response
     {
         $validator = Validator::make($request->all(), [
             'username' => 'required|string',
@@ -39,9 +41,23 @@ class LoginController extends Controller
 
         if ($user) {
             if (Hash::check((string) $request->password, (string) $user->password)) {
-                $token    = $user->createToken('password')->accessToken;
-                $response = ['token' => $token];
-
+                $token    = $user->createToken('password');
+                /** @var Carbon $expiresIn */
+                $expiresIn = $token->token->expires_at;
+                $response = [
+                    'token' => $token->accessToken,
+                    'expires' => $expiresIn,
+                    'message' => 'Your token has been created'
+                ];
+                cookie()->queue(
+                    'token',
+                    $token->accessToken,
+                    14400,
+                    null,
+                    null,
+                    true,
+                    true
+                );
                 return response($response, 200);
             }
         }
