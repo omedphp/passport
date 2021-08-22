@@ -115,12 +115,14 @@ jobs:
       - name: Enable code coverage
         if: matrix.coverage
         run: echo "COVERAGE=1" >> $GITHUB_ENV
+      - name: Configure required files
+        run: |
+          touch ./storage/data.db
+          cp .env.example .env
       - name: Install dependencies
         run: composer update --prefer-dist --no-interaction --no-progress
       - name: Configure Application
         run: |
-          cp .env.example .env
-          touch ./storage/data.db
           ./artisan key:generate
           ./artisan config:cache
           ./artisan passport:keys
